@@ -8,6 +8,7 @@
       file:
         path: "/Applications/{{ item }}.app"
         state: absent
+      become: true
       loop: "{{ preinstalled_apps_remove }}"
       tags: ['init']
 
