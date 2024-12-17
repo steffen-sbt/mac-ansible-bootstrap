@@ -6,9 +6,9 @@
   pre_tasks:
     - name: Ensure specified files are absent
       file:
-        path: "{{ item }}"
+        path: "/Applications/{{ item }}.app"
         state: absent
-      loop: "{{ files_to_delete }}"
+      loop: "{{ preinstalled_apps_remove }}"
       tags: ['init']
 
   roles:
