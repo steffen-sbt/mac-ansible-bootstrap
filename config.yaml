@@ -7,25 +7,8 @@
 configure_dock: true
 dockitems_remove:
   - Launchpad
-  - TV
-  - Podcasts
-  - 'App Store'
-  - Safari
-  - Messages
-  - Mail
-  - Maps
-  - Photos
-  - FaceTime
-  - Calendar
-  - Contacts
-  - Reminders
-  - Notes
-  - Freeform
-  - Music
-  - News
-  - Keynote
-  - Numbers
-  - Pages
+  - zoom.us
+  - Siri
   - 'System Settings'
 dockitems_persist: []
 # - name: "Sublime Text"
@@ -49,6 +32,13 @@ dockitems_persist: []
 #   - .osx
 #   - .vimrc
 
+preinstalled_apps_remove:
+  - GarageBand
+  - Keynote
+  - Numbers
+  - Pages
+  - iMovie
+
 homebrew_installed_packages:
   - autoconf
   - asdf
@@ -58,6 +48,7 @@ homebrew_installed_packages:
   - ollama
   - openssl
   - pipx
+  - tailscale
   - terraform
   - tfautomv
   - wget
@@ -67,14 +58,11 @@ homebrew_taps: []
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - 1password
   - docker
-  - google-chrome
   - google-cloud-sdk
   - iterm2
   - logseq
   - pgadmin4
-  - slack
   - visual-studio-code
 
 # osx_script: "~/.osx --no-restart"

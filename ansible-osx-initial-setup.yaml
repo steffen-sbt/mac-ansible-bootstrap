@@ -3,6 +3,13 @@
   vars_files:
     - config.yaml
 
+  pre_tasks:
+    - name: Ensure specified files are absent
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop: "{{ files_to_delete }}"
+
   roles:
     - geerlingguy.mac.homebrew
     - geerlingguy.mac.dock
