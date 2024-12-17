@@ -42,7 +42,6 @@ preinstalled_apps_remove:
 homebrew_installed_packages:
   - autoconf
   - asdf
-  - git
   - juliaup
   - micromamba
   - ollama

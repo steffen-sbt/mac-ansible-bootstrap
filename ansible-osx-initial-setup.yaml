@@ -9,9 +9,12 @@
         path: "{{ item }}"
         state: absent
       loop: "{{ files_to_delete }}"
+      tags: init
 
   roles:
     - geerlingguy.mac.homebrew
+      tags: always
     - geerlingguy.mac.dock
+      tags: init
   
   
