@@ -12,9 +12,9 @@
       tags: ['init']
 
   roles:
-    - geerlingguy.mac.homebrew
+    - role: geerlingguy.mac.homebrew
       tags: ['always']
-    - geerlingguy.mac.dock
+    - role: geerlingguy.mac.dock
       tags: ['init']
   
   
