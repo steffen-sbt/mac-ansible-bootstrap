@@ -47,7 +47,6 @@ homebrew_installed_packages:
   - ollama
   - openssl
   - pipx
-  - tailscale
   - terraform
   - tfautomv
   - wget
@@ -65,7 +64,7 @@ homebrew_cask_apps:
   - tailscale
   - visual-studio-code
 
-homebrew_upgrade_all_packages: false
+homebrew_upgrade_all_packages: true
 
 # osx_script: "~/.osx --no-restart"
 
