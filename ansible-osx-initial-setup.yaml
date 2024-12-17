@@ -10,12 +10,12 @@
         state: absent
       become: true
       loop: "{{ preinstalled_apps_remove }}"
-      tags: ['init']
+      tags: ['init', 'never']
 
   roles:
     - role: geerlingguy.mac.homebrew
       tags: ['always']
     - role: geerlingguy.mac.dock
-      tags: ['init']
+      tags: ['init', 'never']
   
   

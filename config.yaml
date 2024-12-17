@@ -62,7 +62,10 @@ homebrew_cask_apps:
   - iterm2
   - logseq
   - pgadmin4
+  - tailscale
   - visual-studio-code
+
+homebrew_upgrade_all_packages: false
 
 # osx_script: "~/.osx --no-restart"
 
