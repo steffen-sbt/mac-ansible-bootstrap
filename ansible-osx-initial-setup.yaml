@@ -18,7 +18,69 @@
     - role: geerlingguy.mac.dock
       tags: ['init', 'never']
 
-  # tasks: 
-    # killall Dock
+  tasks: 
+    - name: Install Oh My ZSH
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      args:
+        creates: "/Users/{{ lookup('env', 'USER') }}/.oh-my-zsh"
+
+    - name: Download powerlevel10k
+      git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
+        depth: 1
+    - name: Create fonts directory
+      file:
+        path: "{{ ansible_env.HOME }}/Library/Fonts"
+        state: directory
+        mode: '0755'
+    - name: Download and install Meslo Nerd Font
+      get_url:
+        url: "{{ item }}"
+        dest: "{{ ansible_env.HOME }}/Library/Fonts/"
+        mode: '0644'
+      loop:
+        - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+        - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+        - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+        - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    - name: Update .zshrc to use powerlevel10k theme
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        regexp: '^ZSH_THEME='
+        line: 'ZSH_THEME="powerlevel10k/powerlevel10k"'
+
+    ### Not working, might revisit later
+    # - name: Configure iTerm2 font settings
+    #   community.general.osx_defaults:
+    #     domain: com.googlecode.iterm2
+    #     key: "{{ item.key }}"
+    #     type: "{{ item.type }}"
+    #     value: "{{ item.value }}"
+    #   loop:
+    #     - { key: 'Normal Font', type: string, value: 'MesloLGSNF-Regular 12' }
+    #     - { key: 'Non Ascii Font', type: string, value: 'MesloLGSNF-Regular 12' }
+
+    - name: Ensure VSCode settings directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User"
+        state: directory
+        mode: '0755'
+
+    - name: Configure VSCode font settings
+      blockinfile:
+        path: "{{ ansible_env.HOME }}/Library/Application Support/Code/User/settings.json"
+        create: yes
+        marker: "// {mark} ANSIBLE MANAGED BLOCK - FONT SETTINGS"
+        block: |
+          {
+            "editor.fontFamily": "MesloLGS NF",
+            "editor.fontSize": 12,
+            "terminal.integrated.fontFamily": "MesloLGS NF"
+          }
+
+    - name: Reload dock
+      shell: killall Dock
+      tags: ['init', 'never']
   
   

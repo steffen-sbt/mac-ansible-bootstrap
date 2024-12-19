@@ -7,4 +7,4 @@ python3 get-pip.py
 sudo pip3 install --ignore-installed ansible
 ansible-galaxy install -r requirements.yaml
 
-ansible-playbook -i "localhost," -c local ansible-osx-initial-setup --ask-become-pass --tags init
+ansible-playbook -i "localhost," -c local ansible-osx-initial-setup.yaml --ask-become-pass --tags init
