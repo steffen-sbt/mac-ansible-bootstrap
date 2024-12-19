@@ -17,5 +17,8 @@
       tags: ['always']
     - role: geerlingguy.mac.dock
       tags: ['init', 'never']
+
+  # tasks: 
+    # killall Dock
   
   
